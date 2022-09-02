@@ -1,0 +1,26 @@
+name: tests
+
+on:
+  workflow_call:
+  push:
+    branches: [ master ]
+    tags:
+      - '*'
+  workflow_dispatch:
+
+env:
+  CACHE_DIR: installs
+
+jobs:
+  lint:
+    uses: ./.github/workflows/lint.yml
+
+  build:
+    uses: ./.github/workflows/build.yml
+
+  test:
+    needs: [build]
+    uses: ./.github/workflows/test.yml
+
+  publish:
+    needs: [lint, test]
