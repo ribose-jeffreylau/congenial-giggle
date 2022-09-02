@@ -59,8 +59,8 @@ jobs:
         run: |
           mkdir dist
           echo "built ${{ matrix.foo }}: $(date)" > dist/status.txt
-          echo cp -a dist ${{ env.CACHE_DIR }}
-          cp -a dist ${{ env.CACHE_DIR }}
+          echo cp -R dist ${{ env.CACHE_DIR }}
+          cp -R dist ${{ env.CACHE_DIR }}
           echo ls -la ${{ env.CACHE_DIR }}
           ls -la ${{ env.CACHE_DIR }}
 
