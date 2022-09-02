@@ -68,7 +68,7 @@ jobs:
           # But first, due to GitHub's stupid cp, need to pre-create dest dirs.
             # mkdir -p ${{ env.CACHE_DIR }}/"$i"; \
           for i in dist; do \
-            cp -R "$i" ${{ env.CACHE_DIR }}; \
+            cp -a "$i" ${{ env.CACHE_DIR }}/"$i"; \
           done
           echo ls -la ${{ env.CACHE_DIR }}
           ls -la ${{ env.CACHE_DIR }}
