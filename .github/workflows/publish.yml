@@ -22,7 +22,13 @@ jobs:
 
   publish:
     needs: [tests]
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        foo: ['bar', 'baz']
 
     steps:
       - uses: actions/checkout@v3
