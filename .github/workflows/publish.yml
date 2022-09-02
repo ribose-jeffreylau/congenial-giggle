@@ -1,0 +1,53 @@
+name: publish
+
+on:
+  workflow_call:
+  push:
+    tags:
+      - '*'
+  workflow_dispatch:
+    inputs:
+      next_version:
+        description: |
+          Next release version. Possible values: x.y.z, major, minor, patch
+        required: true
+        default: 'skip'
+
+env:
+  CACHE_DIR: installs
+
+jobs:
+  lint:
+    uses: ./.github/workflows/lint.yml
+
+  build:
+    uses: ./.github/workflows/build.yml
+
+  test:
+    needs: [build]
+    uses: ./.github/workflows/test.yml
+
+  publish:
+    needs: [lint, test]
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+      - if: github.event_name == 'workflow_dispatch' && github.event.inputs.next_version != 'skip'
+        run: |
+          echo 'Creating new version: ${{ github.event.inputs.next_version }}'
+
+      - name: Cache
+        id: build_cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ env.CACHE_DIR }}
+          key: ${{ github.workflow }}-${{ runner.os }}-${{ matrix.foo }}-${{ hashFiles('.github/workflows/**') }}
+
+      - run: |
+          cd ${{ env.CACHE_DIR }}
+          echo publish
+          ls *

@@ -1,0 +1,46 @@
+name: lint
+
+on:
+  workflow_call:
+  # push:
+  #   branches: [ master ]
+  #   paths-ignore:
+  #     - '/*.sh'
+  #     - '/.*'
+  #     - '/_*'
+  #     - '/vcpkg.txt'
+  #     - 'docs/**'
+  #     - '**.adoc'
+  #     - '**.md'
+  #     - '**.nix'
+  #     - 'flake.lock'
+  #     - '.github/workflows/*.yml'
+  #     - '!.github/workflows/lint.yml'
+  pull_request:
+    paths-ignore:
+      - '/*.sh'
+      - '/.*'
+      - '/_*'
+      - '/vcpkg.txt'
+      - 'docs/**'
+      - '**.adoc'
+      - '**.md'
+      - '**.nix'
+      - 'flake.lock'
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+      - run: echo This is a lint

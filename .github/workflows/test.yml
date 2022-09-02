@@ -1,0 +1,60 @@
+name: test
+
+on:
+  workflow_call:
+  # push:
+  #   branches: [ master ]
+  #   paths-ignore:
+  #     - '/*.sh'
+  #     - '/.*'
+  #     - '/_*'
+  #     - '/vcpkg.txt'
+  #     - 'docs/**'
+  #     - '**.adoc'
+  #     - '**.md'
+  #     - '**.nix'
+  #     - 'flake.lock'
+  #     - '.github/workflows/*.yml'
+  #     - '!.github/workflows/test.yml'
+  pull_request:
+    paths-ignore:
+      - '/*.sh'
+      - '/.*'
+      - '/_*'
+      - '/vcpkg.txt'
+      - 'docs/**'
+      - '**.adoc'
+      - '**.md'
+      - '**.nix'
+      - 'flake.lock'
+
+env:
+  CACHE_DIR: installs
+
+jobs:
+  test:
+    name: Test
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        foo: ['bar', 'baz']
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+
+      - name: Cache
+        id: build_cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ env.CACHE_DIR }}
+          key: ${{ github.workflow }}-${{ runner.os }}-${{ matrix.foo }}-${{ hashFiles('.github/workflows/**') }}
+
+      - run: |
+          echo 'Testing:'
+          cat ${{ env.CACHE_DIR }}/status.txt
+          [[ -e ${{ env.CACHE_DIR }}/status.txt ]]
