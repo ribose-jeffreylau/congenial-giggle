@@ -61,5 +61,7 @@ jobs:
           echo "built ${{ matrix.foo }}: $(date)" > dist/status.txt
           echo cp -a dist ${{ env.CACHE_DIR }}
           cp -a dist ${{ env.CACHE_DIR }}
+          echo ls -la ${{ env.CACHE_DIR }}
+          ls -la ${{ env.CACHE_DIR }}
 
       - run: 'echo "${{ matrix.foo }}: This is a build"'
