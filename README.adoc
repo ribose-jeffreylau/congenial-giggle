@@ -16,3 +16,14 @@ Man drops spice rack into toilet.
 
 He has `______ ______`.
 ____
+
+[TIP, caption='ProTip(TM)']
+.Show line numbers
+You can add line numbers to source listings by adding the word `numbered` in the attribute list after the language name.
+
+[source,bash,numbered]
+----
+cd
+cd ~
+cd -
+----
