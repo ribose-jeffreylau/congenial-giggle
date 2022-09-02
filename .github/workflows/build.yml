@@ -57,10 +57,9 @@ jobs:
       - name: Build cache
         if: steps.build_cache.outputs.cache-hit != 'true'
         run: |
-          mkdir dist
+          for i in dist; do mkdir -p ${{ env.CACHE_DIR }}/"$i"; done
           echo "built ${{ matrix.foo }}: $(date)" > dist/status.txt
-          echo mv dist ${{ env.CACHE_DIR }}
-          mv dist ${{ env.CACHE_DIR }}
+          for i in dist; do cp -a "$i" ${{ env.CACHE_DIR }}/"$i"; done
           echo ls -la ${{ env.CACHE_DIR }}
           ls -la ${{ env.CACHE_DIR }}
 
