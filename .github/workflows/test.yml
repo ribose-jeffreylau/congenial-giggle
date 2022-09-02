@@ -56,5 +56,5 @@ jobs:
 
       - run: |
           echo 'Testing:'
-          cat ${{ env.CACHE_DIR }}/status.txt
-          [[ -e ${{ env.CACHE_DIR }}/status.txt ]]
+          cat ${{ env.CACHE_DIR }}/dist/status.txt
+          [[ -e ${{ env.CACHE_DIR }}/dist/status.txt ]]

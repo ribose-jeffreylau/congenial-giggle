@@ -44,3 +44,4 @@ jobs:
           cd ${{ env.CACHE_DIR }}
           echo publish
           ls *
+          cat *
