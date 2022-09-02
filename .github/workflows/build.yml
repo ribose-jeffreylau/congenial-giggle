@@ -39,7 +39,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest]
+        os: [ubuntu-latest, macos-latest, windows-latest]
         foo: ['bar', 'baz']
 
     steps:
@@ -60,7 +60,7 @@ jobs:
 
           # Simulate building:
           mkdir -p dist
-          echo "built ${{ matrix.foo }}: $(date)" > dist/status.txt
+          echo "built ${{ matrix.foo }}-${{ runner.os }}: $(date)" > dist/status.txt
           echo cat dist/status.txt
           cat dist/status.txt
 
