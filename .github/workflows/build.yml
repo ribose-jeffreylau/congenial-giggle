@@ -54,6 +54,9 @@ jobs:
           path: ${{ env.CACHE_DIR }}
           key: ${{ github.workflow }}-${{ runner.os }}-${{ matrix.foo }}-${{ hashFiles('.github/workflows/**') }}
 
+      # For rsync support in Windows
+      - uses: GuillaumeFalourd/setup-rsync@v1
+
       - name: Build cache
         if: steps.build_cache.outputs.cache-hit != 'true'
         shell: bash
