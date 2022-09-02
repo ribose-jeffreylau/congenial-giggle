@@ -36,6 +36,7 @@ jobs:
           fetch-depth: 1
 
       - if: github.event_name == 'workflow_dispatch' && github.event.inputs.next_version != 'skip'
+        shell: bash
         run: |
           echo 'Creating new version: ${{ github.event.inputs.next_version }}'
 
@@ -46,7 +47,8 @@ jobs:
           path: ${{ env.CACHE_DIR }}
           key: ${{ github.workflow }}-${{ runner.os }}-${{ matrix.foo }}-${{ hashFiles('.github/workflows/**') }}
 
-      - run: |
+      - shell: bash
+        run: |
           cd ${{ env.CACHE_DIR }}
           echo Publishing:
           echo ls -la
