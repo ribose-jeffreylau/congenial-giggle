@@ -3,9 +3,7 @@ name: tests
 on:
   workflow_call:
   push:
-    branches: [ master ]
-    tags:
-      - '*'
+    branches: [ '*' ]
   workflow_dispatch:
 
 env:
