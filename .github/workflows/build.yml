@@ -58,7 +58,7 @@ jobs:
         if: steps.build_cache.outputs.cache-hit != 'true'
         run: |
           echo "built ${{ matrix.foo }}: $(date)" > status.txt
-          echo cp -a ${{ env.GITHUB_WORKSPACE }} ${{ env.CACHE_DIR }}
-          cp -a ${{ env.GITHUB_WORKSPACE }} ${{ env.CACHE_DIR }}
+          echo cp -a ${{ github.workspace }} ${{ env.CACHE_DIR }}
+          cp -a ${{ github.workspace }} ${{ env.CACHE_DIR }}
 
       - run: 'echo "${{ matrix.foo }}: This is a build"'
