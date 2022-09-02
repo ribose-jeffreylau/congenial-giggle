@@ -14,14 +14,14 @@ Some intro.
 ____
 Man drops spice rack into toilet.
 
-He has `______ ______`.
+He has `$$_$$$$_$$$$_$$$$_$$$$_$$$$_$$ $$_$$$$_$$$$_$$$$_$$$$_$$$$_$$`.
 ____
 
 [TIP, caption='ProTip(TM)']
 .Show line numbers
-You can add line numbers to source listings by adding the word `numbered` in the attribute list after the language name.
+You can add line numbers to source listings by adding the word `linenums` in the attribute list after the language name.
 
-[source,bash,numbered]
+[source,bash,linenums]
 ----
 cd
 cd ~
