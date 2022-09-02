@@ -48,6 +48,9 @@ jobs:
 
       - run: |
           cd ${{ env.CACHE_DIR }}
-          echo publish
-          ls *
-          cat *
+          echo Publishing:
+          echo ls -la
+          ls -la
+          echo ls -la*
+          ls -la *
+          cat dist/status.txt
