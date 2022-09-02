@@ -1,5 +1,18 @@
 = This is a README file
 
+ifdef::env-github[]
+image:https://github.com/ribose-jeffreylau/congenial-giggle/actions/workflows/tests.yml/badge.svg[
+  "Test Status",
+  link="https://github.com/ribose-jeffreylau/congenial-giggle/actions"]
+image:https://github.com/ribose-jeffreylau/congenial-giggle/actions/workflows/publish.yml/badge.svg[
+  "Release Status",
+  link="https://github.com/ribose-jeffreylau/congenial-giggle/actions"]
+image:https://img.shields.io/github/v/release/ribose-jeffreylau/congenial-giggle?display_name=tag&include_prereleases&sort=semver[
+  GitHub release (latest SemVer including pre-releases),
+  Link="https://github.com/ribose-jeffreylau/congenial-giggle/releases"
+]
+endif::[]
+
 *_Written in AsciiDoc_*
 
 == Background
