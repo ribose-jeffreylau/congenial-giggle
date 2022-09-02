@@ -72,5 +72,7 @@ jobs:
           done
           echo ls -la ${{ env.CACHE_DIR }}
           ls -la ${{ env.CACHE_DIR }}
+          echo ls -la ${{ env.CACHE_DIR }}/*
+          ls -la ${{ env.CACHE_DIR }}/*
 
       - run: 'echo "${{ matrix.foo }}: This is a build"'
