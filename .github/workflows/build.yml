@@ -66,9 +66,9 @@ jobs:
 
           # Move built stuff into cache
           # But first, due to GitHub's stupid cp, need to pre-create dest dirs.
-            # mkdir -p ${{ env.CACHE_DIR }}/"$i"; \
           for i in dist; do \
-            cp -a "$i" ${{ env.CACHE_DIR }}/"$i"; \
+            mkdir -p ${{ env.CACHE_DIR }}/"$i"; \
+            cp -a "$i" ${{ env.CACHE_DIR }}/"$i"/; \
           done
           echo ls -la ${{ env.CACHE_DIR }}
           ls -la ${{ env.CACHE_DIR }}
