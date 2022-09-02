@@ -54,7 +54,8 @@ jobs:
           path: ${{ env.CACHE_DIR }}
           key: ${{ github.workflow }}-${{ runner.os }}-${{ matrix.foo }}-${{ hashFiles('.github/workflows/**') }}
 
-      - run: |
+      - shell: bash
+        run: |
           echo 'Testing:'
           echo ls -la ${{ env.CACHE_DIR }}
           ls -la ${{ env.CACHE_DIR }}
