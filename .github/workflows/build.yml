@@ -57,9 +57,17 @@ jobs:
       - name: Build cache
         if: steps.build_cache.outputs.cache-hit != 'true'
         run: |
-          for i in dist; do mkdir -p ${{ env.CACHE_DIR }}/"$i"; done
+
+          # Simulate building:
+          mkdir -p dist
           echo "built ${{ matrix.foo }}: $(date)" > dist/status.txt
-          for i in dist; do cp -a "$i" ${{ env.CACHE_DIR }}/"$i"; done
+
+          # Move built stuff into cache
+          # But first, due to GitHub's stupid cp, need to pre-create dest dirs.
+          for i in dist; do \
+            mkdir -p ${{ env.CACHE_DIR }}/"$i"; \
+            cp -a "$i" ${{ env.CACHE_DIR }}/"$i"; \
+          done
           echo ls -la ${{ env.CACHE_DIR }}
           ls -la ${{ env.CACHE_DIR }}
 
